@@ -2,7 +2,114 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with dfdfsdlASP.NET Core</a>.</p>
-</div>
+@*<div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with dfdfsdlASP.NET Core</a>.</p>
+    </div>*@
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create two equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+        height: 234px; /* Should be removed. Only for demonstration */
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+
+
+
+
+<div>
+    <h4>PROFIL PERSONAL</h4>
+    <hr />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <form action="demo_form.asp">
+                    Nume <input type="text" name="fnume" disabled><br>
+                    Prenume <input type="text" name="fprenume" disabled><br>
+                    Adresa <input type="text" name="fadresa" disabled><br>
+                    CNP <input type="text" name="fcnp" disabled><br>
+                    Seria <input type="text" name="fseria" disabled><br>
+                    Numar <input type="text" name="fnumar" disabled><br>
+                    Data Nasterii <input type="text" name="fdatanasterii" disabled><br>
+                    Status Universitate <input type="text" name="fdatanasterii" disabled><br>
+                    Status Medic de Familie <input type="text" name="fdatanasterii" disabled><br>
+                    Status Politie <input type="text" name="fdatanasterii" disabled><br>
+                </form>
+            </div>
+            <div class="col-md-8">
+                <br />
+                <div>
+
+                </div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-1">
+                        </div>
+
+                        <div class="col-md-7">
+
+                            <div style="border: 5px solid red">
+
+                                <div class="row">
+                                    <div class="column">
+                                        <p>Softbinator are nevoie de o adeverinta de la medicul de familie care atesta ca sunteti apt pentru munca.</p>
+                                    </div>
+                                    <div class="column">
+                                        <label id="status" style="margin-left:100px"></label>
+
+                                    </div>
+                                </div>
+
+                                dsadas
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        var statusHtml = "Status: ";
+        var status = "in asteptare";
+
+        //document.getElementById('status').innerHTML = statusHtml + status;
+        //document.getElementsByName("fnume")[0].value = "george"
+    </script>
