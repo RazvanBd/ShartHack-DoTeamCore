@@ -21,7 +21,7 @@ form {
 }
 
 .segment {
-    padding: 32px 0;
+    padding: 36px 0;
     text-align: center;
 }
 
@@ -113,3 +113,10 @@ body {
         margin: 0;
         flex: 1;
     }
+
+.field {
+    border-radius: 62px;
+    background: #EBECF0;
+    box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+    
+}
