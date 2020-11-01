@@ -26,13 +26,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/home.css" />
-
-
-
-
+    <script src="~/js/site.js"></script>
 
 
 </head>
+
+
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-mainbg">
@@ -44,16 +44,16 @@
                 <ul class="navbar-nav ml-auto">
                     <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
 
-                    <li class="nav-item active">
-                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>HOME</a>
+                    <li class="nav-item active" id="home">
+                        <a class="nav-link"  asp-controller="Home" asp-action="Index" ><i class="far fa-address-book"></i>HOME</a>
+                    </li>
+                    <li class="nav-item" id="adeverinte">
+                        <a class="nav-link" asp-controller="Adeverinte" asp-action="Index"><i class="far fa-clone"></i>CERERI/ADEVERINTE</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>CERERI/ADEVERINTE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>NOTIFICARI</a>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>ADMINISTRAREA CONTULUI</a>
+                        <a class="nav-link" href="javascript:void(0);" ><i class="far fa-calendar-alt"></i>NOTIFICARI</a>
+                    <li class="nav-item" id="administrare">
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="far fa-calendar-alt"></i>ADMINISTRAREA CONTULUI</a>
                 </ul>
             </div>
         </nav>
@@ -66,7 +66,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; Ghiseul Digital <a asp-area="" asp-controller="Home" asp-action="Privacy"> </a>
+            &copy; Ghiseul Digital 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

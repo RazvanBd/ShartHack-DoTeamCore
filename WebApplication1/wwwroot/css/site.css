@@ -48,7 +48,7 @@ html {
 
 button.accept-policy {
   font-size: 1rem;
-  line-height: inherit;
+  line-height: black;
 }
 
 /* Sticky footer styles
@@ -91,7 +91,7 @@ i {
 }
 
 .navbar-mainbg {
-    background-color: #5161ce;
+    background-color: #9c00b8;
     padding: 0px;
 }
 
@@ -126,7 +126,7 @@ i {
     }
 
     #navbarSupportedContent > ul > li.active > a {
-        color: #5161ce;
+        color: #9c00b8;
         background-color: transparent;
         transition: all 0.7s;
     }
@@ -187,7 +187,7 @@ i {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: #5161ce;
+            background-color: #9c00b8;
         }
 
     .hori-selector .right:before {
@@ -224,7 +224,7 @@ i {
 }
 
 .navbar-mainbg {
-    background-color: #5161ce;
+    background-color: #9b00d15c;
     padding: 0px;
 }
 
@@ -259,7 +259,7 @@ i {
     }
 
     #navbarSupportedContent > ul > li.active > a {
-        color: #5161ce;
+        color: #9c00b8;
         background-color: transparent;
         transition: all 0.7s;
     }
@@ -320,7 +320,7 @@ i {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: #5161ce;
+            background-color: #9b00d15c;
         }
 
     .hori-selector .right:before {
@@ -357,7 +357,7 @@ i {
 }
 
 .navbar-mainbg {
-    background-color: #5161ce;
+    background-color: #9c00b8;
     padding: 0px;
 }
 
@@ -392,7 +392,7 @@ i {
     }
 
     #navbarSupportedContent > ul > li.active > a {
-        color: #5161ce;
+        color: #9c00b8;
         background-color: transparent;
         transition: all 0.7s;
     }
@@ -453,7 +453,7 @@ i {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: #5161ce;
+            background-color: #9c00b8;
         }
 
     .hori-selector .right:before {

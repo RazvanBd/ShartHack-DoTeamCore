@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Identity\Pages\Account\Manage\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
 

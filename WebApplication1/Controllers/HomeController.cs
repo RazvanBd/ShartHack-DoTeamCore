@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebApplication1.Models;
 
@@ -11,27 +12,235 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly GhiseuDigitalContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(GhiseuDigitalContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        // GET: Persoanes
+        public async Task<IActionResult> Index()
+        {
+            Persoane Persoana = _context.Persoane.FirstOrDefault(e => e.Cnp == "1980305134126");
+            StudentiUniversitate studentiFacultate = _context.StudentiUniversitate.FirstOrDefault(e => e.Cnp == "1980305134126");
+            PersoaneMedic persoaneMedic = _context.PersoaneMedic.FirstOrDefault(e => e.Cnp == "1980305134126");
+            PersoanePolitie persoanePolitie = _context.PersoanePolitie.FirstOrDefault(e => e.Cnp == "1980305134126");
+            if (persoanePolitie.Cazier)
+            {
+                Persoana.StatusPolitie =   "Are cazier, ";
+            }
+            else
+            {
+                Persoana.StatusPolitie =   "Nu are cazier, ";
+            }
+
+            if (persoanePolitie.Permis)
+                Persoana.StatusPolitie = Persoana.StatusPolitie + "are permis de conducere.";
+            else
+                Persoana.StatusPolitie = Persoana.StatusPolitie + "nu are permis de conducere.";
+
+            if (persoaneMedic.BoliCronice)
+                Persoana.StatusMedic = "Are boli cronice";
+            else
+                Persoana.StatusMedic = "Nu are boli cronice";
+
+
+            DetailsViewModel PersoanaDetalii = new DetailsViewModel();
+            PersoanaDetalii.Cnp = Persoana.Cnp;
+            PersoanaDetalii.Adresa = Persoana.Adresa;
+            PersoanaDetalii.Cereri = Persoana.Cereri;
+            PersoanaDetalii.DataNasterii = Persoana.DataNasterii;
+            PersoanaDetalii.Numar = Persoana.Numar;
+            PersoanaDetalii.Nume = Persoana.Nume;
+            PersoanaDetalii.Oras = Persoana.Oras;
+            PersoanaDetalii.Prenume = Persoana.Prenume;
+            PersoanaDetalii.Serie = Persoana.Serie;
+            PersoanaDetalii.StatusMedic = Persoana.StatusMedic;
+            PersoanaDetalii.StatusPolitie = Persoana.StatusPolitie;
+            PersoanaDetalii.StatusUniversitate = Persoana.StatusUniversitate;
+            PersoanaDetalii.An = studentiFacultate.An;
+            PersoanaDetalii.Facultate = studentiFacultate.Facultate;
+            PersoanaDetalii.Specializare = studentiFacultate.Specializare;
+            PersoanaDetalii.Stadiu = studentiFacultate.Stadiu;
+
+
+
+            return View(PersoanaDetalii);
+        }
+
+        
+
+        // GET: Persoanes/Details/5
+        //public async Task<IActionResult> Details(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var persoane = await _context.Persoane
+        //        .FirstOrDefaultAsync(m => m.Cnp == id);
+        //    if (persoane == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    Persoane Persoana = _context.Persoane.FirstOrDefault(e => e.Cnp == "1980305134126");
+        //    StudentiUniversitate studentiFacultate = _context.StudentiUniversitate.FirstOrDefault(e => e.Cnp == "1980305134126");
+        //    PersoaneMedic persoaneMedic = _context.PersoaneMedic.FirstOrDefault(e => e.Cnp == "1980305134126");
+        //    PersoanePolitie persoanePolitie = _context.PersoanePolitie.FirstOrDefault(e => e.Cnp == "1980305134126");
+        //    if (persoanePolitie.Cazier)
+        //    {
+        //        Persoana.StatusPolitie = "Are cazier, ";
+        //    }
+        //    else
+        //    {
+        //        Persoana.StatusPolitie = "Nu are cazier, ";
+        //    }
+
+        //    if (persoanePolitie.Permis)
+        //        Persoana.StatusPolitie = Persoana.StatusPolitie + "are permis de conducere.";
+        //    else
+        //        Persoana.StatusPolitie = Persoana.StatusPolitie + "nu are permis de conducere.";
+
+        //    if (persoaneMedic.BoliCronice)
+        //        Persoana.StatusMedic = "Are boli cronice";
+        //    else
+        //        Persoana.StatusMedic = "Nu are boli cronice";
+
+
+        //    DetailsViewModel PersoanaDetalii = new DetailsViewModel();
+        //    PersoanaDetalii.Cnp = Persoana.Cnp;
+        //    PersoanaDetalii.Adresa = Persoana.Adresa;
+        //    PersoanaDetalii.Cereri = Persoana.Cereri;
+        //    PersoanaDetalii.DataNasterii = Persoana.DataNasterii;
+        //    PersoanaDetalii.Numar = Persoana.Numar;
+        //    PersoanaDetalii.Nume = Persoana.Nume;
+        //    PersoanaDetalii.Oras = Persoana.Oras;
+        //    PersoanaDetalii.Prenume = Persoana.Prenume;
+        //    PersoanaDetalii.Serie = Persoana.Serie;
+        //    PersoanaDetalii.StatusMedic = Persoana.StatusMedic;
+        //    PersoanaDetalii.StatusPolitie = Persoana.StatusPolitie;
+        //    PersoanaDetalii.StatusUniversitate = Persoana.StatusUniversitate;
+        //    PersoanaDetalii.An = studentiFacultate.An;
+        //    PersoanaDetalii.Facultate = studentiFacultate.Facultate;
+        //    PersoanaDetalii.Specializare = studentiFacultate.Specializare;
+        //    PersoanaDetalii.Stadiu = studentiFacultate.Stadiu;
+
+
+
+        //    return View(PersoanaDetalii);
+
+
+
+        //}
+
+        // GET: Persoanes/Create
+        public IActionResult Create()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        // POST: Persoanes/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Cnp,Nume,Prenume,Serie,Numar,Adresa,Oras,DataNasterii,StatusPolitie,StatusMedic,StatusUniversitate")] Persoane persoane)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                _context.Add(persoane);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(persoane);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        // GET: Persoanes/Edit/5
+        public async Task<IActionResult> Edit(string id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var persoane = await _context.Persoane.FindAsync(id);
+            if (persoane == null)
+            {
+                return NotFound();
+            }
+            return View(persoane);
+        }
+
+        // POST: Persoanes/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("Cnp,Nume,Prenume,Serie,Numar,Adresa,Oras,DataNasterii,StatusPolitie,StatusMedic,StatusUniversitate")] Persoane persoane)
+        {
+            if (id != persoane.Cnp)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(persoane);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!PersoaneExists(persoane.Cnp))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(persoane);
+        }
+
+        // GET: Persoanes/Delete/5
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var persoane = await _context.Persoane
+                .FirstOrDefaultAsync(m => m.Cnp == id);
+            if (persoane == null)
+            {
+                return NotFound();
+            }
+
+            return View(persoane);
+        }
+
+        // POST: Persoanes/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var persoane = await _context.Persoane.FindAsync(id);
+            _context.Persoane.Remove(persoane);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool PersoaneExists(string id)
+        {
+            return _context.Persoane.Any(e => e.Cnp == id);
         }
     }
 }

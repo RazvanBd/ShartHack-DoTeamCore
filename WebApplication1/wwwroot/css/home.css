@@ -14,6 +14,7 @@ div, p {
 }
 
 form {
+    color:black;
     padding: 16px;
     width: 320px;
     margin: 0 auto;
@@ -42,7 +43,7 @@ label {
 
 input {
     margin-right: 8px;
-    box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+    box-shadow: inset 2px 2px 5px #9b00d15c, inset -5px -5px 10px #FFF;
     width: 100%;
     box-sizing: border-box;
     transition: all 0.2s ease-in-out;
@@ -96,7 +97,12 @@ button {
         width: 100%;
         color: #AE1100;
     }
-
+input {
+    color: #310986;
+}
+body {
+    color: #000000;
+}
 .input-group {
     display: flex;
     align-items: center;

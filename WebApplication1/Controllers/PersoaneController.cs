@@ -50,7 +50,7 @@ namespace WebApplication1.Controllers
             PersoanaDetalii.Cnp = Persoana.Cnp;
             PersoanaDetalii.Adresa = Persoana.Adresa;
             PersoanaDetalii.Cereri = Persoana.Cereri;
-            PersoanaDetalii.DataNasterii = Persoana.DataNasterii;          
+            PersoanaDetalii.DataNasterii = Persoana.DataNasterii.Date;          
             PersoanaDetalii.Numar = Persoana.Numar;
             PersoanaDetalii.Nume = Persoana.Nume;
             PersoanaDetalii.Oras = Persoana.Oras;

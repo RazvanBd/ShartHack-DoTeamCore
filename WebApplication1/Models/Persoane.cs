@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication1.Models
 {
@@ -24,6 +25,8 @@ namespace WebApplication1.Models
         public string Adresa { get; set; }
         public string Oras { get; set; }
 
+        [Column("DataNasterii", TypeName = "date")]
+        [DataType(DataType.Date)]
         [DisplayName("Data Nasterii")]
         public DateTime DataNasterii { get; set; }
 
