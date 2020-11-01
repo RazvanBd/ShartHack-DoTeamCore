@@ -14,6 +14,34 @@
         <h1 class="display-4">Welcome</h1>
         <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with dfdfsdlASP.NET Core</a>.</p>
     </div>*@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-mainbg">
+        <a class="navbar-brand navbar-logo" href="#">Ghiseul Digital</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" style="margin-left: 30px" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+
+                <li class="nav-item active" id="home">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index"><i class="far fa-address-book"></i>HOME</a>
+                </li>
+                <li class="nav-item" id="adeverinte">
+                    <a class="nav-link" asp-controller="Adeverinte" asp-action="Index"><i class="far fa-clone"></i>CERERI/ADEVERINTE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>NOTIFICARI</a>
+                <li class="nav-item" id="administrare">
+                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="far fa-calendar-alt"></i>ADMINISTRAREA CONTULUI</a>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+
+
 
 <style>
     * {
@@ -23,7 +51,7 @@
     .column {
         float: left;
         width: 50%;
-        padding: 10px;
+        padding: 37px;
         height: 234px; /* Should be removed. Only for demonstration */
     }
     /* Clear floats after the columns */
@@ -107,7 +135,7 @@
 
                                 <span class="field"></span>
                                 <div class="row">
-                                    <div class="column" , style="margin-right:20">
+                                    <div class="column" ,padding: 20px; style="margin-right:20">
                                         <p>Softbinator are nevoie de o adeverinta de la medicul de familie care atesta ca sunteti apt pentru munca.</p>
                                     </div>
                                     <div class="column">
@@ -117,13 +145,11 @@
 
                                     <div style="width:400px;">
                                         <div style="float: left; width: 50px">
-                                            <form id="thisone" action="post_nrs_users.asp" method="post">
-                                                <input type="submit" name="" value="Accepta">
-                                            </form>
+                                                <input style="width: 164px;margin-left: 73px;" onclick="accepta()" type="submit" name="" value="Accepta">
                                         </div>
                                         <div style="float: right; width: 50px">
                                             <form id="thistoo" action="post_nrs_users.asp" method="post">
-                                                <input type="submit" name="" value="Refuza">
+                                                <input style="width: 164px; margin-left: 73px;" type="submit" name="" value="Refuza">
                                             </form>
                                         </div>
                                     </div>
@@ -154,6 +180,14 @@
         var statusHtml = "Status: ";
         var status = "in asteptare";
         document.getElementById('status').innerHTML = statusHtml + status;
-            //document.getElementsByName("fnume")[0].value = "george"
+                    //document.getElementsByName("fnume")[0].value = "george"
+
+
+
+        function accepta() {
+            status = "acceptat";
+            document.getElementById('status').innerHTML = statusHtml + status;
+
+        }
 
     </script>

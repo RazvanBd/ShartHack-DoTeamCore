@@ -9,15 +9,15 @@ body, p, input, select, textarea, button {
 }
 
 div, p {
-    color: #BABECC;
+    color: #000000;
     text-shadow: 1px 1px 1px #FFF;
 }
 
 form {
     color:black;
-    padding: 16px;
+    padding: 6px;
     width: 320px;
-    margin: 0 auto;
+    margin: 0 auto; 
 }
 
 .segment {
@@ -118,5 +118,4 @@ body {
     border-radius: 62px;
     background: #EBECF0;
     box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
-    
 }

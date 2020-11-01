@@ -3,6 +3,36 @@
 *@
 @{
 }
+<header>
+    <nav class="navbar navbar-expand-lg navbar-mainbg">
+        <a class="navbar-brand navbar-logo" href="#">Ghiseul Digital</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" style="margin-left: 30px" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <div style="left:40px" class="hori-selector">
+                <div class="left"></div>
+                <div class="right"></div></div>
+
+                <li class="nav-item active" id="home">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index"><i class="far fa-address-book"></i>HOME</a>
+                </li>
+                <li class="nav-item" id="adeverinte">
+                    <a class="nav-link" asp-controller="Adeverinte" asp-action="Index"><i class="far fa-clone"></i>CERERI/ADEVERINTE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>NOTIFICARI</a>
+                <li class="nav-item" id="administrare">
+                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="far fa-calendar-alt"></i>ADMINISTRAREA CONTULUI</a>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+
+
 
 
     <div class="card" style="width: 18rem;">
@@ -15,3 +45,16 @@
         </div>
     </div>
 
+<script>
+
+
+    $(document).ready(function () {
+        $("#adeverinte").addClass("active");
+        $(".hori-selector")[0].css('left', '143px');
+        $(".hori-selector")[0].css('width', '200.287px');
+    });
+
+
+
+
+</script>
