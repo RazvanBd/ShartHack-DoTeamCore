@@ -9,22 +9,22 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class StudentiUniversitatesController : Controller
+    public class PersoanePolitieController : Controller
     {
         private readonly GhiseuDigitalContext _context;
 
-        public StudentiUniversitatesController(GhiseuDigitalContext context)
+        public PersoanePolitieController(GhiseuDigitalContext context)
         {
             _context = context;
         }
 
-        // GET: StudentiUniversitates
+        // GET: PersoanePolitie
         public async Task<IActionResult> Index()
         {
-            return View(await _context.StudentiUniversitate.ToListAsync());
+            return View(await _context.PersoanePolitie.ToListAsync());
         }
 
-        // GET: StudentiUniversitates/Details/5
+        // GET: PersoanePolitie/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var studentiUniversitate = await _context.StudentiUniversitate
+            var persoanePolitie = await _context.PersoanePolitie
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (studentiUniversitate == null)
+            if (persoanePolitie == null)
             {
                 return NotFound();
             }
 
-            return View(studentiUniversitate);
+            return View(persoanePolitie);
         }
 
-        // GET: StudentiUniversitates/Create
+        // GET: PersoanePolitie/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: StudentiUniversitates/Create
+        // POST: PersoanePolitie/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nume,Prenume,Cnp,Facultate,Specializare,Stadiu,An")] StudentiUniversitate studentiUniversitate)
+        public async Task<IActionResult> Create([Bind("Id,Nume,Prenume,Cnp,Permis,Cazier")] PersoanePolitie persoanePolitie)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(studentiUniversitate);
+                _context.Add(persoanePolitie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(studentiUniversitate);
+            return View(persoanePolitie);
         }
 
-        // GET: StudentiUniversitates/Edit/5
+        // GET: PersoanePolitie/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var studentiUniversitate = await _context.StudentiUniversitate.FindAsync(id);
-            if (studentiUniversitate == null)
+            var persoanePolitie = await _context.PersoanePolitie.FindAsync(id);
+            if (persoanePolitie == null)
             {
                 return NotFound();
             }
-            return View(studentiUniversitate);
+            return View(persoanePolitie);
         }
 
-        // POST: StudentiUniversitates/Edit/5
+        // POST: PersoanePolitie/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nume,Prenume,Cnp,Facultate,Specializare,Stadiu,An")] StudentiUniversitate studentiUniversitate)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nume,Prenume,Cnp,Permis,Cazier")] PersoanePolitie persoanePolitie)
         {
-            if (id != studentiUniversitate.Id)
+            if (id != persoanePolitie.Id)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace WebApplication1.Controllers
             {
                 try
                 {
-                    _context.Update(studentiUniversitate);
+                    _context.Update(persoanePolitie);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentiUniversitateExists(studentiUniversitate.Id))
+                    if (!PersoanePolitieExists(persoanePolitie.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace WebApplication1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(studentiUniversitate);
+            return View(persoanePolitie);
         }
 
-        // GET: StudentiUniversitates/Delete/5
+        // GET: PersoanePolitie/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var studentiUniversitate = await _context.StudentiUniversitate
+            var persoanePolitie = await _context.PersoanePolitie
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (studentiUniversitate == null)
+            if (persoanePolitie == null)
             {
                 return NotFound();
             }
 
-            return View(studentiUniversitate);
+            return View(persoanePolitie);
         }
 
-        // POST: StudentiUniversitates/Delete/5
+        // POST: PersoanePolitie/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var studentiUniversitate = await _context.StudentiUniversitate.FindAsync(id);
-            _context.StudentiUniversitate.Remove(studentiUniversitate);
+            var persoanePolitie = await _context.PersoanePolitie.FindAsync(id);
+            _context.PersoanePolitie.Remove(persoanePolitie);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StudentiUniversitateExists(int id)
+        private bool PersoanePolitieExists(int id)
         {
-            return _context.StudentiUniversitate.Any(e => e.Id == id);
+            return _context.PersoanePolitie.Any(e => e.Id == id);
         }
     }
 }

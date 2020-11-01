@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using WebApplication1.Models;
+
+
 
 namespace WebApplication1.Models
 {
-    public partial class Persoane
+    public partial class DetailsViewModel
     {
-        public Persoane()
+        public DetailsViewModel()
         {
             Cereri = new HashSet<Cereri>();
         }
@@ -34,6 +37,12 @@ namespace WebApplication1.Models
 
         [DisplayName("Status Universitate")]
         public bool? StatusUniversitate { get; set; }
+        public string Facultate { get; set; }
+        public string Specializare { get; set; }
+        public string Stadiu { get; set; }
+        public string An { get; set; }
+
+
 
         public virtual ICollection<Cereri> Cereri { get; set; }
     }
