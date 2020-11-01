@@ -27,7 +27,7 @@ namespace WebApplication1.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-L3QNDPI;Database=GhiseuDigital;Trusted_Connection=True;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-KNJ41GG;Database=GhiseuDigital;Trusted_Connection=True;MultipleActiveResultSets=true");
             }
         }
 

@@ -65,19 +65,35 @@
 
                         <div class="col-md-7">
 
-                            <div style="border: 5px solid red">
-
+                            <div class="field">
+                                
+                                <span class="field"></span>
                                 <div class="row">
-                                    <div class="column">
+                                    <div class="column" , style="margin-right:20">
                                         <p>Softbinator are nevoie de o adeverinta de la medicul de familie care atesta ca sunteti apt pentru munca.</p>
                                     </div>
                                     <div class="column">
                                         <label id="status" style="margin-left:100px"></label>
 
                                     </div>
+
+                                    <div style="width:400px;">
+                                        <div style="float: left; width: 50px">
+                                            <form id="thisone" action="post_nrs_users.asp" method="post">
+                                                <input type="submit" name="" value="Accepta">
+                                            </form>
+                                        </div>
+                                        <div style="float: right; width: 50px">
+                                            <form id="thistoo" action="post_nrs_users.asp" method="post">
+                                                <input type="submit" name="" value="Refuza">
+                                            </form>
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                                dsadas
+
+
                             </div>
 
 
@@ -96,20 +112,10 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
     <script>
         var statusHtml = "Status: ";
         var status = "in asteptare";
-
-        //document.getElementById('status').innerHTML = statusHtml + status;
+        document.getElementById('status').innerHTML = statusHtml + status;
         //document.getElementsByName("fnume")[0].value = "george"
+       
     </script>
