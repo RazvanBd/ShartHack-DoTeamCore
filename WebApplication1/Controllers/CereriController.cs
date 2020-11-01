@@ -9,22 +9,23 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class PersoanePolitiesController : Controller
+    public class CereriController : Controller
     {
         private readonly GhiseuDigitalContext _context;
 
-        public PersoanePolitiesController(GhiseuDigitalContext context)
+        public CereriController(GhiseuDigitalContext context)
         {
             _context = context;
         }
 
-        // GET: PersoanePolities
+        // GET: Cereri
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PersoanePolitie.ToListAsync());
+            var ghiseuDigitalContext = _context.Cereri.Include(c => c.Institutie).Include(c => c.User);
+            return View(await ghiseuDigitalContext.ToListAsync());
         }
 
-        // GET: PersoanePolities/Details/5
+        // GET: Cereri/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +33,45 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var persoanePolitie = await _context.PersoanePolitie
+            var cereri = await _context.Cereri
+                .Include(c => c.Institutie)
+                .Include(c => c.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (persoanePolitie == null)
+            if (cereri == null)
             {
                 return NotFound();
             }
 
-            return View(persoanePolitie);
+            return View(cereri);
         }
 
-        // GET: PersoanePolities/Create
+        // GET: Cereri/Create
         public IActionResult Create()
         {
+            ViewData["InstitutieId"] = new SelectList(_context.Institutii, "Id", "NumeInstitutie");
+            ViewData["UserId"] = new SelectList(_context.Persoane, "Cnp", "Cnp");
             return View();
         }
 
-        // POST: PersoanePolities/Create
+        // POST: Cereri/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nume,Prenume,Cnp,Permis,Cazier")] PersoanePolitie persoanePolitie)
+        public async Task<IActionResult> Create([Bind("Id,UserId,TipCerere,InstitutieId,Status,Data")] Cereri cereri)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(persoanePolitie);
+                _context.Add(cereri);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(persoanePolitie);
+            ViewData["InstitutieId"] = new SelectList(_context.Institutii, "Id", "NumeInstitutie", cereri.InstitutieId);
+            ViewData["UserId"] = new SelectList(_context.Persoane, "Cnp", "Cnp", cereri.UserId);
+            return View(cereri);
         }
 
-        // GET: PersoanePolities/Edit/5
+        // GET: Cereri/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +79,24 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var persoanePolitie = await _context.PersoanePolitie.FindAsync(id);
-            if (persoanePolitie == null)
+            var cereri = await _context.Cereri.FindAsync(id);
+            if (cereri == null)
             {
                 return NotFound();
             }
-            return View(persoanePolitie);
+            ViewData["InstitutieId"] = new SelectList(_context.Institutii, "Id", "NumeInstitutie", cereri.InstitutieId);
+            ViewData["UserId"] = new SelectList(_context.Persoane, "Cnp", "Cnp", cereri.UserId);
+            return View(cereri);
         }
 
-        // POST: PersoanePolities/Edit/5
+        // POST: Cereri/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nume,Prenume,Cnp,Permis,Cazier")] PersoanePolitie persoanePolitie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,TipCerere,InstitutieId,Status,Data")] Cereri cereri)
         {
-            if (id != persoanePolitie.Id)
+            if (id != cereri.Id)
             {
                 return NotFound();
             }
@@ -96,12 +105,12 @@ namespace WebApplication1.Controllers
             {
                 try
                 {
-                    _context.Update(persoanePolitie);
+                    _context.Update(cereri);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PersoanePolitieExists(persoanePolitie.Id))
+                    if (!CereriExists(cereri.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +121,12 @@ namespace WebApplication1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(persoanePolitie);
+            ViewData["InstitutieId"] = new SelectList(_context.Institutii, "Id", "NumeInstitutie", cereri.InstitutieId);
+            ViewData["UserId"] = new SelectList(_context.Persoane, "Cnp", "Cnp", cereri.UserId);
+            return View(cereri);
         }
 
-        // GET: PersoanePolities/Delete/5
+        // GET: Cereri/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +134,32 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var persoanePolitie = await _context.PersoanePolitie
+            var cereri = await _context.Cereri
+                .Include(c => c.Institutie)
+                .Include(c => c.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (persoanePolitie == null)
+            if (cereri == null)
             {
                 return NotFound();
             }
 
-            return View(persoanePolitie);
+            return View(cereri);
         }
 
-        // POST: PersoanePolities/Delete/5
+        // POST: Cereri/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var persoanePolitie = await _context.PersoanePolitie.FindAsync(id);
-            _context.PersoanePolitie.Remove(persoanePolitie);
+            var cereri = await _context.Cereri.FindAsync(id);
+            _context.Cereri.Remove(cereri);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PersoanePolitieExists(int id)
+        private bool CereriExists(int id)
         {
-            return _context.PersoanePolitie.Any(e => e.Id == id);
+            return _context.Cereri.Any(e => e.Id == id);
         }
     }
 }
